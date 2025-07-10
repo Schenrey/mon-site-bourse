@@ -1,0 +1,9 @@
+flask
+flask-socketio
+eventlet
+yfinance
+tensorflow
+pandas
+numpy
+python-dotenv
+yagmail

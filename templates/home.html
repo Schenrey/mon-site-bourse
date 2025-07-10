@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Mon Site Bourse - Alertes en temps réel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1>Suivi Boursier en temps réel</h1>
+    </header>
+
+    <nav>
+        <div class="burger" id="burger">&#9776;</div>
+        <ul id="menu" class="hidden">
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Analyse</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="alerts" class="alerts" style="display:none;">
+        <h2>Alertes</h2>
+        <ul id="alerts-list"></ul>
+    </section>
+
+    <section>
+        <table id="stocks-table">
+            <thead>
+                <tr>
+                    <th>Symbole</th>
+                    <th>Prix actuel (USD)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticker, price in prices.items() %}
+                <tr>
+                    <td>{{ ticker }}</td>
+                    <td>{{ "%.2f"|format(price) if price else "N/A" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>Page mise à jour avec alertes en temps réel.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
